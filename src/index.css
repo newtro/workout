@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@theme {
+  /* Core brand colors */
+  --color-brand-50: #f3e8ff;
+  --color-brand-100: #e9d5ff;
+  --color-brand-200: #d8b4fe;
+  --color-brand-300: #c084fc;
+  --color-brand-400: #a855f7;
+  --color-brand-500: #8b5cf6;
+  --color-brand-600: #6c2bd9;
+  --color-brand-700: #5521b5;
+  --color-brand-800: #4a1d96;
+  --color-brand-900: #3b1578;
+
+  /* Energy accent (orange) */
+  --color-energy-50: #fff7ed;
+  --color-energy-100: #ffedd5;
+  --color-energy-200: #fed7aa;
+  --color-energy-300: #fdba74;
+  --color-energy-400: #fb923c;
+  --color-energy-500: #f97316;
+  --color-energy-600: #ea580c;
+  --color-energy-700: #c2410c;
+
+  /* Success (emerald) */
+  --color-success-50: #ecfdf5;
+  --color-success-100: #d1fae5;
+  --color-success-200: #a7f3d0;
+  --color-success-300: #6ee7b7;
+  --color-success-400: #34d399;
+  --color-success-500: #10b981;
+  --color-success-600: #059669;
+  --color-success-700: #047857;
+
+  /* Fire (red) */
+  --color-fire-50: #fef2f2;
+  --color-fire-100: #fee2e2;
+  --color-fire-200: #fecaca;
+  --color-fire-300: #fca5a5;
+  --color-fire-400: #f87171;
+  --color-fire-500: #ef4444;
+  --color-fire-600: #dc2626;
+  --color-fire-700: #b91c1c;
+
+  /* Ocean (sky blue) */
+  --color-ocean-50: #f0f9ff;
+  --color-ocean-100: #e0f2fe;
+  --color-ocean-200: #bae6fd;
+  --color-ocean-300: #7dd3fc;
+  --color-ocean-400: #38bdf8;
+  --color-ocean-500: #0ea5e9;
+  --color-ocean-600: #0284c7;
+  --color-ocean-700: #0369a1;
+
+  /* Gold */
+  --color-gold-400: #facc15;
+  --color-gold-500: #eab308;
+  --color-gold-600: #ca8a04;
+
+  /* Surface colors (dark theme) */
+  --color-surface-50: #fafafa;
+  --color-surface-100: #f4f4f5;
+  --color-surface-200: #e4e4e7;
+  --color-surface-300: #d4d4d8;
+  --color-surface-400: #a1a1aa;
+  --color-surface-500: #71717a;
+  --color-surface-600: #52525b;
+  --color-surface-700: #3f3f46;
+  --color-surface-800: #27272a;
+  --color-surface-900: #18181b;
+  --color-surface-950: #09090b;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-surface-950);
+  color: var(--color-surface-100);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.gradient-brand {
+  background: linear-gradient(135deg, #6c2bd9, #ec4899);
+}
+
+.gradient-energy {
+  background: linear-gradient(135deg, #f97316, #eab308);
+}
+
+.gradient-ocean {
+  background: linear-gradient(135deg, #0ea5e9, #6c2bd9);
+}
+
+.gradient-fire {
+  background: linear-gradient(135deg, #ef4444, #f97316);
+}
+
+.gradient-success {
+  background: linear-gradient(135deg, #10b981, #0ea5e9);
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: 1rem;
+  background: var(--color-surface-900);
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #6c2bd9, #ec4899);
+  z-index: -1;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-700);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-surface-600);
+}
