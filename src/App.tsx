@@ -11,14 +11,27 @@ import { ExerciseDetailPage } from './pages/ExerciseDetailPage'
 import { TemplatesPage } from './pages/TemplatesPage'
 import { TemplateDetailPage } from './pages/TemplateDetailPage'
 import { useExerciseStore } from './stores/exercise-store'
+import { useUIStore } from './stores/ui-store'
 import { useEffect } from 'react'
 
 export default function App() {
   const initializeExercises = useExerciseStore((s) => s.initializeExercises)
+  const theme = useUIStore((s) => s.theme)
 
   useEffect(() => {
     initializeExercises()
   }, [initializeExercises])
+
+  useEffect(() => {
+    const root = document.documentElement
+    if (theme === 'light') {
+      root.classList.add('light')
+    } else {
+      root.classList.remove('light')
+    }
+  }, [theme])
+
+  const isDark = theme === 'dark'
 
   return (
     <>
@@ -26,9 +39,9 @@ export default function App() {
         position="top-center"
         toastOptions={{
           style: {
-            background: '#27272a',
-            color: '#f4f4f5',
-            border: '1px solid #3f3f46',
+            background: isDark ? '#27272a' : '#ffffff',
+            color: isDark ? '#f4f4f5' : '#18181b',
+            border: isDark ? '1px solid #3f3f46' : '1px solid #e4e4e7',
             borderRadius: '12px',
           },
         }}

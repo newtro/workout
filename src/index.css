@@ -76,6 +76,28 @@ html {
   color-scheme: dark;
 }
 
+html.light {
+  color-scheme: light;
+
+  /* Invert surface scale for light mode */
+  --color-surface-50: #09090b;
+  --color-surface-100: #18181b;
+  --color-surface-200: #27272a;
+  --color-surface-300: #3f3f46;
+  --color-surface-400: #71717a;
+  --color-surface-500: #a1a1aa;
+  --color-surface-600: #d4d4d8;
+  --color-surface-700: #e4e4e7;
+  --color-surface-800: #f4f4f5;
+  --color-surface-900: #fafafa;
+  --color-surface-950: #ffffff;
+
+  /* Slightly adjusted brand colors for better light mode contrast */
+  --color-brand-400: #7c3aed;
+  --color-brand-500: #6d28d9;
+  --color-brand-600: #5b21b6;
+}
+
 body {
   margin: 0;
   background-color: var(--color-surface-950);
@@ -112,7 +134,7 @@ body {
 .gradient-border {
   position: relative;
   border-radius: 1rem;
-  background: var(--color-surface-900);
+  background: var(--color-surface-950);
 }
 
 .gradient-border::before {
@@ -139,4 +161,13 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-surface-600);
+}
+
+/* Light mode scrollbar */
+html.light ::-webkit-scrollbar-thumb {
+  background: var(--color-surface-600);
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: var(--color-surface-500);
 }

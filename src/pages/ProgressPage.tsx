@@ -5,6 +5,7 @@ import { Tabs } from '../components/ui/Tabs'
 import { EmptyState } from '../components/ui/EmptyState'
 import { useWorkoutStore } from '../stores/workout-store'
 import { useExerciseStore } from '../stores/exercise-store'
+import { useUIStore } from '../stores/ui-store'
 import { calculateWorkoutVolume, calculateCompletedSets, estimate1RM } from '../lib/calculators'
 import { formatVolume, formatDuration } from '../lib/formatters'
 import {
@@ -50,6 +51,7 @@ const MUSCLE_COLORS: Record<string, string> = {
 export function ProgressPage() {
   const workouts = useWorkoutStore((s) => s.workouts)
   const exercises = useExerciseStore((s) => s.exercises)
+  const theme = useUIStore((s) => s.theme)
   const [timeRange, setTimeRange] = useState('1m')
   const [selectedExercise, setSelectedExercise] = useState<string>('')
 
@@ -150,12 +152,15 @@ export function ProgressPage() {
       ? completed.reduce((sum, w) => sum + (w.durationMinutes ?? 0), 0) / completed.length
       : 0
 
+  const isLight = theme === 'light'
   const tooltipStyle = {
-    backgroundColor: '#18181b',
-    border: '1px solid #3f3f46',
+    backgroundColor: isLight ? '#fafafa' : '#18181b',
+    border: `1px solid ${isLight ? '#e4e4e7' : '#3f3f46'}`,
     borderRadius: '12px',
-    color: '#f4f4f5',
+    color: isLight ? '#18181b' : '#f4f4f5',
   }
+  const gridStroke = isLight ? '#e4e4e7' : '#27272a'
+  const axisStroke = isLight ? '#a1a1aa' : '#71717a'
 
   if (completed.length === 0) {
     return (
@@ -204,9 +209,9 @@ export function ProgressPage() {
           <h3 className="text-lg font-bold mb-4">Weekly Volume</h3>
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={weeklyVolume}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#27272a" />
-              <XAxis dataKey="week" stroke="#71717a" fontSize={12} />
-              <YAxis stroke="#71717a" fontSize={12} />
+              <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
+              <XAxis dataKey="week" stroke={axisStroke} fontSize={12} />
+              <YAxis stroke={axisStroke} fontSize={12} />
               <Tooltip contentStyle={tooltipStyle} />
               <Bar dataKey="volume" fill="#8b5cf6" radius={[6, 6, 0, 0]} />
             </BarChart>
@@ -220,9 +225,9 @@ export function ProgressPage() {
           <h3 className="text-lg font-bold mb-4 mt-4">Workout Frequency</h3>
           <ResponsiveContainer width="100%" height={180}>
             <BarChart data={weeklyFrequency}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#27272a" />
-              <XAxis dataKey="week" stroke="#71717a" fontSize={12} />
-              <YAxis stroke="#71717a" fontSize={12} allowDecimals={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
+              <XAxis dataKey="week" stroke={axisStroke} fontSize={12} />
+              <YAxis stroke={axisStroke} fontSize={12} allowDecimals={false} />
               <Tooltip contentStyle={tooltipStyle} />
               <Bar dataKey="count" fill="#0ea5e9" radius={[6, 6, 0, 0]} />
             </BarChart>
@@ -293,9 +298,9 @@ export function ProgressPage() {
           {exerciseProgression.length > 1 && (
             <ResponsiveContainer width="100%" height={220}>
               <LineChart data={exerciseProgression}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#27272a" />
-                <XAxis dataKey="date" stroke="#71717a" fontSize={12} />
-                <YAxis stroke="#71717a" fontSize={12} />
+                <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
+                <XAxis dataKey="date" stroke={axisStroke} fontSize={12} />
+                <YAxis stroke={axisStroke} fontSize={12} />
                 <Tooltip contentStyle={tooltipStyle} />
                 <Line
                   type="monotone"
